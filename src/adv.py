@@ -1,5 +1,7 @@
 from room import Room
 
+user_input = input('Please select the following directions to move from room to room:')
+
 # Declare all the rooms
 
 room = {
