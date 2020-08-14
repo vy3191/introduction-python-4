@@ -5,6 +5,7 @@ class Room:
   def __init__(self, name, description):
     self.name = name
     self.description = description
+    self.items = []
 
-  def __str__(self):
-    return f"Room name is {self.name} and description is {self.description}"
+  def get_item(self, item_name)
+  

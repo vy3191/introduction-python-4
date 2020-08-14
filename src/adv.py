@@ -1,6 +1,7 @@
 from room import Room
+from player import Player
+from item import Item
 
-user_input = input('Please select the following directions to move from room to room:')
 
 # Declare all the rooms
 
@@ -35,19 +36,35 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+room['outside'].items = 
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
-
+player = Player(room['foyer'])
 # Write a loop that:
 #
+while True:
 # * Prints the current room name
+    print(f"Welcome to the Adventrue game.")
+    print(f" You are current location is at {player.current_room.name} room.")
 # * Prints the current description (the textwrap module might be useful here).
+    print(f"and the descriptions of your location is: {player.current_room.description}")
 # * Waits for user input and decides what to do.
-#
+    user_input = input("If you want to move to a different room please choose a direction ('N', 'S','E','W'):\n")
 # If the user enters a cardinal direction, attempt to move to the room there.
+    if user_input.lower() == "n":
+        attribute = user_input.lower()+"_to"
+        if hasattr(player.current_room, attribute):
+            player.current_room = getattr(player.current_room, attribute)
+        else:
+            print(f"The {player.current_room.name} does not have {user_input} direction. Please choose a different direction.")
+
+            
+
+
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
