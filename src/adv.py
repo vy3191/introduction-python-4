@@ -55,6 +55,8 @@ while True:
 # * Waits for user input and decides what to do.
     user_input = input("If you want to move to a different room please choose a direction ('N', 'S','E','W'):\n")
 # If the user enters a cardinal direction, attempt to move to the room there.
+    if user_input.lower() == 'q':
+        break
     if user_input.lower() == "n":
         attribute = user_input.lower()+"_to"
         if hasattr(player.current_room, attribute):
