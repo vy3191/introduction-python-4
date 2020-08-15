@@ -6,7 +6,7 @@ class Item:
     self.name = name
     self.description = description
 
-  def get_item(self):
+  def on_take(self):
     return f"You have picked up {self.name} item."
 
   def __str__(self):

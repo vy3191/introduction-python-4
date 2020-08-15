@@ -66,16 +66,37 @@ while True:
         print("This room has no items for you to carry")        
 # * Waits for user input and decides what to do.
     user_input = input("If you want to move to a different room please choose a direction ('N', 'S','E','W'):\n")
-# If the user enters a cardinal direction, attempt to move to the room there.    
-    if user_input.lower():
-        attribute = user_input.lower()+"_to"
-        if hasattr(player.current_room, attribute):
-            player.current_room = getattr(player.current_room, attribute)        
-        # Print an error message if the movement isn't allowed.    
-        else:
-            print(f"The {player.current_room.name} does not have {user_input} direction.")
-            print(f"Please choose a different direction.")
-            continue 
-    # If the user enters "q", quit the game.
+     # If the user enters "q", quit the game.
     if user_input.lower() == 'q':
         break
+    split_input = user_input.split()
+# If the user enters a cardinal direction, attempt to move to the room there.  
+    if len(split_input)==1:
+        if user_input.lower():
+            attribute = split_input[0].lower()+"_to"
+            if hasattr(player.current_room, attribute):
+                player.current_room = getattr(player.current_room, attribute)        
+            # Print an error message if the movement isn't allowed.    
+            else:
+                print(f"The {player.current_room.name} does not have {user_input} direction.")
+                print(f"Please choose a different direction.")
+                continue 
+    elif len(split_input) == 2:        
+        item_name = split_input[1]
+        if split_input[0].lower() == 'get':
+            item = player.current_room.get_item(item_name)
+            if item:
+                item.on_take()
+                print(item)
+                player.current_room.remove_item(item)
+                player.items.append(item)
+            else:
+                print(f"{item_name} does not exist in the room.")
+        elif split_input[0].lower() == "drop":
+            # drop the item
+            pass
+        else:
+            print("I did not recognize that command")        
+            continue
+
+
