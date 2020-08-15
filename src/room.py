@@ -7,5 +7,5 @@ class Room:
     self.description = description
     self.items = []
 
-  def get_item(self, item_name)
+  # def get_item(self, item_name)
   
